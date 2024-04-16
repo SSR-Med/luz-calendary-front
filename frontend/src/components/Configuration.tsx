@@ -63,7 +63,7 @@ function createEditButtonConfiguration(index:number,editButtonConfigurationProps
     if(editButtonConfigurationProps.editedRowIndex === index){
         return(
             <TableCell key={index} sx={{display:"flex",gap:"5%"}}>
-                <Button variant="contained" onClick={()=>editButtonConfigurationProps.setEditedRowIndex(null)}>Confirmar</Button>
+                <Button color="success" variant="contained" onClick={()=>editButtonConfigurationProps.setEditedRowIndex(null)}>Confirmar</Button>
                 <Button variant="contained" onClick={()=>editButtonConfigurationProps.setEditedRowIndex(null)}>Cancelar</Button>
             </TableCell>
         )
@@ -72,7 +72,7 @@ function createEditButtonConfiguration(index:number,editButtonConfigurationProps
         return(
             <TableCell key={index} sx={{display:"flex",gap:"5%"}}>
                 <Button variant="contained" onClick={() => editButtonConfigurationProps.setEditedRowIndex(index)}>Editar</Button>
-                <Button variant="contained" onClick={() => editButtonConfigurationProps.setEditedRowIndex(index)}>Eliminar</Button>
+                <Button color="error" variant="contained" onClick={() => editButtonConfigurationProps.setEditedRowIndex(index)}>Eliminar</Button>
             </TableCell>
         )
     }
@@ -84,12 +84,20 @@ function createBodyConfigurationTable(rows:Record<string,any>[], editButtonConfi
             {
                 rows.map((row:any, index) => (
                     <TableRow
-                    key={row.id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         {
-                            Object.keys(row).map((key:string) => (
-                                <TableCell key={index}>{row[key]}</TableCell>
-                            ))
+                            Object.keys(row).map((key:string) =>{
+                                return (
+                                    <TableCell key={index}>
+                                        {
+                                            editButtonConfigurationProps.editedRowIndex === index ?
+                                            <TextField defaultValue={row[key]} type={typeof row[key] === 'number' ? 'number' : 'text'}/>
+                                            :
+                                            <span>{row[key]}</span>
+                                        }
+                                    </TableCell>
+                                )
+                            })
                         }
                         {createEditButtonConfiguration(index,editButtonConfigurationProps)}
                     </TableRow>
