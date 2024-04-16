@@ -16,6 +16,7 @@ export default function Patient() {
           header: ["Id","Id_user","Nombre","Teléfono","documento"],
           rows : [
             {id:1, id_user:1, name:"Juan", cellphone:"123456", document:"123456"},
+            {id:1, id_user:1, name:"Juan", cellphone:"123456", document:"123456"}
           ]
         })}
       </>
