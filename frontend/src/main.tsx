@@ -6,10 +6,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 // Routes
-import { Login }from './routes/login/Login'
-import { Register }from './routes/login/Register'
-import { ForgotPassword } from './routes/login/ForgotPassword';
-import { ChangePassword } from './routes/login/ChangePassword';
+import Login from './routes/login/Login'
+import Register from './routes/login/Register'
+import ForgotPassword from './routes/login/ForgotPassword';
+import ChangePassword from './routes/login/ChangePassword';
+import Patient from './routes/configuration/Patient';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/modify-password",
     element: <ChangePassword/>
+  },
+  {
+    path: "/patient",
+    element: <Patient/>
   }
 ]);
 

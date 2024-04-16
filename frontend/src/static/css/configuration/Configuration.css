@@ -1,0 +1,36 @@
+.configuration-objects{
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.configuration-objects header{
+    background-color: #85be65;
+    height: 10%;
+    width: 100%;
+}
+
+.configuration-objects main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+}
+
+.configuration-div {
+    position: relative;
+    width: 90%;
+    height: 85%;
+}
+
+.configuration-elements{
+    margin: 2.5% 2.5%;
+}
+
+.configuration-searcher{
+    display: flex;
+    gap:30px;
+    margin-bottom: 2.5%;
+}

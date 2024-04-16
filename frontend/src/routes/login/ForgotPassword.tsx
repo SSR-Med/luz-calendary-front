@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 // Styles
 import { loginStyleButton, loginStyleTextField } from "../../styles/login/LoginStyle";
 
-export function ForgotPassword(){
+export default function ForgotPassword(){
     return (
         <>
             <div className = "login">

@@ -8,7 +8,7 @@ import { loginStyleButton, loginStyleTextField } from "../../styles/login/LoginS
 // Components
 import { InputTextPassword } from "../../components/InputTextPassword";
 
-export function Login(){
+export default function Login(){
     return (
         <>
             <div className = "login">
