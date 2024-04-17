@@ -11,6 +11,7 @@ import Register from './routes/login/Register'
 import ForgotPassword from './routes/login/ForgotPassword';
 import ChangePassword from './routes/login/ChangePassword';
 import Patient from './routes/configuration/Patient';
+import User from './routes/configuration/User';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/patient",
     element: <Patient/>
+  },
+  {
+    path: "/user",
+    element: <User/>
   }
 ]);
 

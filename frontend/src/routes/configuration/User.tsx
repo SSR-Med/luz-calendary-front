@@ -7,7 +7,7 @@ import { useState } from "react";
 // Helpers
 import HandleTable from "../../helpers/configuration/HandleTable";
 
-export default function Patient() {
+export default function User() {
     // Select values
     const [valueForm, setValueForm] = useState<string>("");
     // Search values
@@ -16,15 +16,16 @@ export default function Patient() {
     const [editedRowIndex, setEditedRowIndex] = useState<number|null>(null);
     // Type of data in dictFormValues
     const typeDataDictFormValues = {
-      "string": new Set(["name"]),
-      "number": new Set(["cellphone","document"])
+      "string": new Set(["name","email"]),
+      "number": new Set([])
     }
     // Request data
-    const requestData = 
+    let requestData = 
       [
-        {id:1, id_user:1, name:"Juan", cellphone:123456, document:123456},
-        {id:2, id_user:1, name:"Miguel", cellphone:892, document:78910}
+        {id:1, name: "Petro", email: "petro@gmail.com", password: "", role: false},
+        {id:2, name: "Duque", email: "duque@gmail.com", password: "", role: true},
       ]
+    
     let requestFilterData = HandleTable(requestData,
       valueForm,
       valueText,
@@ -32,15 +33,14 @@ export default function Patient() {
     return (
       <>
         {
-          Configuration("Pacientes",
+          Configuration("Usuarios",
             {
               valueForm,
               setValueForm,
               dictFormValues: {
                 "": "Ninguno",
                 "name": "Nombre",
-                "cellphone": "Teléfono",
-                "document": "Documento"
+                "email": "Correo",
               }
             },
             {
@@ -48,7 +48,7 @@ export default function Patient() {
               setValueText,
             },
             {
-              header: ["Id","Id_user","Nombre","Teléfono","Documento"],
+              header: ["Id","Nombre","Correo","Contraseña","Rol"],
               rows : requestFilterData
             },
             {

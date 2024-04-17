@@ -103,10 +103,20 @@ function createBodyConfigurationTable(rows:Record<string,any>[], editButtonConfi
                                 return (
                                     <TableCell key={index}>
                                         {
-                                            editButtonConfigurationProps.editedRowIndex === index ?
+                                           editButtonConfigurationProps.editedRowIndex === index ? (
+                                            typeof row[key] === 'boolean'
+                                           ) ? (
+                                            <Select 
+                                            defaultValue={row[key]}
+                                            >
+                                                <MenuItem value={true as any}>Admin</MenuItem>
+                                                <MenuItem value={false as any}>Usuario</MenuItem>
+                                            </Select>
+                                           ) : (
                                             <TextField defaultValue={row[key]} type={typeof row[key] === 'number' ? 'number' : 'text'}/>
-                                            :
-                                            <span>{row[key]}</span>
+                                           ) : (
+                                                <span>{typeof row[key] === 'boolean' ? (row[key] ? 'Admin' : 'Usuario') : row[key]}</span>
+                                           )
                                         }
                                     </TableCell>
                                 )

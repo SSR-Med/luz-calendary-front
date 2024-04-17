@@ -14,4 +14,5 @@ export default function HandleTable(requestData:Record<string,any>[],
     return requestData.filter(
         (row) => row[valueForm].toLowerCase().includes(String(valueText).toLowerCase())
     )
+ 
 }
