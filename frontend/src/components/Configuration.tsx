@@ -103,7 +103,7 @@ function createBodyConfigurationTable(rows:Record<string,any>[], editButtonConfi
                                 return (
                                     <TableCell key={index}>
                                         {
-                                           editButtonConfigurationProps.editedRowIndex === index ? (
+                                           editButtonConfigurationProps.editedRowIndex === index && key != "id"? (
                                             typeof row[key] === 'boolean'
                                            ) ? (
                                             <Select 
