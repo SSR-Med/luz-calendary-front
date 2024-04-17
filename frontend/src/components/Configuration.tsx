@@ -140,11 +140,10 @@ function createConfigurationTable(configurationTableProps:configurationTableProp
 export default function Configuration(configurationName:string,
     formControlProps:formControlProps, 
     inputTextControlProps:inputTextControlProps,
-    configurationTableProps:configurationTableProps){
+    configurationTableProps:configurationTableProps,
+    editButtonConfigurationProps:editButtonConfigurationProps){
     // Menu
     const [open, setOpen] = useState(false);
-    // Edit row
-    const [editedRowIndex,setEditedRowIndex] = useState(null);
     return (
         <div className="configuration-objects">
             {LeftNavigationMenu(open, setOpen)}
@@ -160,11 +159,7 @@ export default function Configuration(configurationName:string,
                         <div className="configuration-searcher">
                             {createFormControl(formControlProps,inputTextControlProps)}
                         </div>
-                        {createConfigurationTable(configurationTableProps,
-                            {
-                                editedRowIndex,
-                                setEditedRowIndex
-                            })}
+                        {createConfigurationTable(configurationTableProps,editButtonConfigurationProps)}
                     </div>
                 </div>
             </main>
