@@ -18,7 +18,12 @@ interface formControlProps {
     dictFormValues: Record<string,string>;
 }
 
-function createFormControl(formControlProps:formControlProps){
+interface inputTextControlProps{
+    valueText: string|number;
+    setValueText: React.Dispatch<React.SetStateAction<string|number>>;
+}
+
+function createFormControl(formControlProps:formControlProps, inputTextControlProps:inputTextControlProps){
     return (
         <>
         <FormControl style={{minWidth:'30%'}}>
@@ -30,12 +35,20 @@ function createFormControl(formControlProps:formControlProps){
             >
                 {
                     Object.keys(formControlProps.dictFormValues).map((key:string) => (
-                        <MenuItem value={formControlProps.dictFormValues[key]}>{key}</MenuItem>
+                        <MenuItem value={key}>{formControlProps.dictFormValues[key]}</MenuItem>
                     ))
                 }
             </Select>
         </FormControl>
-        <TextField label="Buscar" variant="filled" style={{minWidth:"60%"}}></TextField>
+        <TextField
+            label="Buscar"
+            variant="filled"
+            style={{ minWidth: "60%" }}
+            defaultValue={inputTextControlProps.valueText}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                inputTextControlProps.setValueText(event.target.value)
+            }
+        ></TextField>
         </>)   
 }
 
@@ -109,7 +122,7 @@ function createBodyConfigurationTable(rows:Record<string,any>[], editButtonConfi
 
 interface configurationTableProps {
     header:string[];
-    rows:any[];
+    rows:Record<string,any>[];
 }
 
 function createConfigurationTable(configurationTableProps:configurationTableProps,editButtonConfigurationProps:editButtonConfigurationProps){
@@ -125,12 +138,11 @@ function createConfigurationTable(configurationTableProps:configurationTableProp
 }
 
 export default function Configuration(configurationName:string,
-    dictFormValues: Record<string,string>,
+    formControlProps:formControlProps, 
+    inputTextControlProps:inputTextControlProps,
     configurationTableProps:configurationTableProps){
     // Menu
     const [open, setOpen] = useState(false);
-    // Form
-    const [valueForm, setValueForm] = useState('');
     // Edit row
     const [editedRowIndex,setEditedRowIndex] = useState(null);
     return (
@@ -146,7 +158,7 @@ export default function Configuration(configurationName:string,
                     <div className="configuration-elements">
                         <h1>Configuración de {configurationName}</h1>
                         <div className="configuration-searcher">
-                            {createFormControl({valueForm, setValueForm, dictFormValues})}
+                            {createFormControl(formControlProps,inputTextControlProps)}
                         </div>
                         {createConfigurationTable(configurationTableProps,
                             {
