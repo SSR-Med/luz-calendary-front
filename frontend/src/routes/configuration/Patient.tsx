@@ -54,7 +54,21 @@ export default function Patient() {
             {
               editedRowIndex,
               setEditedRowIndex
-            })
+            },
+          {
+            "name": {
+              "nick": "Nombre",
+              "type": "text"
+            },
+            "cellphone": {
+              "nick": "Teléfono",
+              "type": "text"
+            },
+            "document": {
+              "nick": "Documento",
+              "type": "text"
+            }
+          })
       }
       </>
     );

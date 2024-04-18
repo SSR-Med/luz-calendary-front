@@ -10,6 +10,7 @@ import { TextField,SelectChangeEvent, FormControl, InputLabel, Select, MenuItem,
 import { Menu } from "@mui/icons-material";
 // Components 
 import LeftNavigationMenu from "./LeftNavigationMenu";
+import CreateEntityConfiguration from "./CreateEntityConfiguration";
 
 
 interface formControlProps {
@@ -151,7 +152,8 @@ export default function Configuration(configurationName:string,
     formControlProps:formControlProps, 
     inputTextControlProps:inputTextControlProps,
     configurationTableProps:configurationTableProps,
-    editButtonConfigurationProps:editButtonConfigurationProps){
+    editButtonConfigurationProps:editButtonConfigurationProps,
+    createEntityFields:Record<string,any>){
     // Menu
     const [open, setOpen] = useState(false);
     return (
@@ -166,6 +168,8 @@ export default function Configuration(configurationName:string,
                 <div className="configuration-div">
                     <div className="configuration-elements">
                         <h1>Configuración de {configurationName}</h1>
+                        <Button color="success" variant="contained" sx={{marginBottom:'1%', fontSize:'100%'}}
+                        onClick={() => CreateEntityConfiguration(configurationName,createEntityFields)}>Crear {configurationName}</Button>
                         <div className="configuration-searcher">
                             {createFormControl(formControlProps,inputTextControlProps)}
                         </div>

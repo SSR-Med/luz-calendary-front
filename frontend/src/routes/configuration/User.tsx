@@ -54,7 +54,29 @@ export default function User() {
             {
               editedRowIndex,
               setEditedRowIndex
-            })
+            },
+          {
+            "name": {
+              "nick": "Nombre",
+              "type": "text"
+            },
+            "email": {
+              "nick": "Email",
+              "type": "text"
+            },
+            "password": {
+              "nick": "Contraseña",
+              "type": "text"
+            },
+            "role": {
+              "nick": "Rol",
+              "type": "select",
+              "options": {
+                "true": "Admin",
+                "false": "Usuario"
+              }
+            }
+          })
       }
       </>
     );
