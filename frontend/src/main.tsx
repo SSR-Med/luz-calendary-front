@@ -12,6 +12,7 @@ import ForgotPassword from './routes/login/ForgotPassword';
 import ChangePassword from './routes/login/ChangePassword';
 import Patient from './routes/configuration/Patient';
 import User from './routes/configuration/User';
+import Calendar from './routes/Calendar';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/user",
     element: <User/>
+  },
+  {
+    path: "/calendar",
+    element: <Calendar/>
   }
 ]);
 
