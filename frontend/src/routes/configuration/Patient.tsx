@@ -3,11 +3,17 @@ import "/src/static/css/configuration/Configuration.css"
 // Components
 import Configuration from "../../components/Configuration";
 // Dependencies
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 // Helpers
 import HandleTable from "../../helpers/configuration/HandleTable";
+import RefreshToken from "../../helpers/token/RefreshToken";
 
 export default function Patient() {
+    const navigate = useNavigate()
+    useEffect(()=>{
+      RefreshToken(navigate)
+    },[])
     // Select values
     const [valueForm, setValueForm] = useState<string>("");
     // Search values

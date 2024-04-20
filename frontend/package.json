@@ -15,15 +15,17 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "axios": "^1.6.8",
+    "js-cookie": "^3.0.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "sort-by": "^0.0.2",
-    "sweetalert2": "^11.10.8"
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

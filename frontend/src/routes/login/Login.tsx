@@ -5,6 +5,7 @@ import {TextField, Button} from '@mui/material';
 import {Link, useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
 // Environment
 import { API_URL } from "../../configuration/EnviromentVariables";
 // Styles
@@ -21,10 +22,11 @@ export default function Login(){
 
     const handleLoginClick = async () => {
         try{
-            await axios.post(`${API_URL}/login`,{
+            const token = await axios.post(`${API_URL}/login`,{
                 name: name,
                 password: password
             })
+            Cookies.set("token",token.data.token)
             navigate("/calendar")
         }catch(error){
             console.log(error)
