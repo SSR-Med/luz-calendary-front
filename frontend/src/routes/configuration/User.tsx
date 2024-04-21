@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 // Helpers
 import HandleTable from "../../helpers/configuration/HandleTable";
 import RefreshToken from "../../helpers/token/RefreshToken";
+import { getEntity} from "../../helpers/requests/ModifyEntity";
 
 export default function User() {
     const navigate = useNavigate()
@@ -20,22 +21,17 @@ export default function User() {
     const [valueText,setValueText] = useState<string|number>("");
     // Edit button configuration
     const [editedRowIndex, setEditedRowIndex] = useState<number|null>(null);
-    // Type of data in dictFormValues
-    const typeDataDictFormValues = {
-      "string": new Set(["name","email"]),
-      "number": new Set([])
-    }
     // Request data
-    let requestData = 
-      [
-        {id:1, name: "Petro", email: "petro@gmail.com", password: "", role: false},
-        {id:2, name: "Duque", email: "duque@gmail.com", password: "", role: true},
-      ]
+    const [requestData,setRequestData] = useState<Record<string,any>[]>([])
+    useEffect(()=>{
+      getEntity("user").then((responseData) => {
+        setRequestData(responseData)
+      })
+    }, [])
     
     let requestFilterData = HandleTable(requestData,
       valueForm,
-      valueText,
-      typeDataDictFormValues)
+      valueText)
     return (
       <>
         {

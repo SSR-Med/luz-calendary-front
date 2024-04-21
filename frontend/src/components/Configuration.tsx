@@ -11,6 +11,8 @@ import { Menu } from "@mui/icons-material";
 // Components 
 import LeftNavigationMenu from "./LeftNavigationMenu";
 import CreateEntityConfiguration from "./CreateEntityConfiguration";
+// Helpers
+import { deleteEntity, modifyEntity } from "../helpers/requests/ModifyEntity";
 
 
 interface formControlProps {
@@ -73,26 +75,42 @@ interface editButtonConfigurationProps {
     setEditedRowIndex:React.Dispatch<React.SetStateAction<any>>;
 }
 
-function createEditButtonConfiguration(index:number,editButtonConfigurationProps:editButtonConfigurationProps){
+
+
+function createEditButtonConfiguration(configurationName:string,index:number,editButtonConfigurationProps:editButtonConfigurationProps,
+    editValuesField: Record<string, any>
+){
+    const modifyEntityHandler = () => {
+        editButtonConfigurationProps.setEditedRowIndex(null)
+        modifyEntity(configurationName,editValuesField)
+    }
     if(editButtonConfigurationProps.editedRowIndex === index){
         return(
-            <TableCell key={index} sx={{display:"flex",gap:"5%"}}>
-                <Button color="success" variant="contained" onClick={()=>editButtonConfigurationProps.setEditedRowIndex(null)}>Confirmar</Button>
+            <TableCell sx={{display:"flex",gap:"5%"}}>
+                <Button color="success" variant="contained" onClick={
+                    modifyEntityHandler
+                    }>Confirmar</Button>
                 <Button variant="contained" onClick={()=>editButtonConfigurationProps.setEditedRowIndex(null)}>Cancelar</Button>
             </TableCell>
         )
     }
     else{
         return(
-            <TableCell key={index} sx={{display:"flex",gap:"5%"}}>
+            <TableCell sx={{display:"flex",gap:"5%"}}>
                 <Button variant="contained" onClick={() => editButtonConfigurationProps.setEditedRowIndex(index)}>Editar</Button>
-                <Button color="error" variant="contained" onClick={() => editButtonConfigurationProps.setEditedRowIndex(index)}>Eliminar</Button>
+                <Button color="error" variant="contained" onClick={() => deleteEntity(configurationName,editValuesField["id"])}>Eliminar</Button>
             </TableCell>
         )
     }
 }
 
-function createBodyConfigurationTable(rows:Record<string,any>[], editButtonConfigurationProps:editButtonConfigurationProps){
+function createBodyConfigurationTable(configurationName:string,
+    rows:Record<string,any>[], editButtonConfigurationProps:editButtonConfigurationProps,
+){
+    const [editValuesField,setEditValuesField] = useState<Record<string,any>>({})
+    // The idea es to send this values to the button for the request, it will need the function to send the request too.
+    // Select is not finished.
+    // Eliminar function should be done too
     return (
         <TableBody>
             {
@@ -100,21 +118,23 @@ function createBodyConfigurationTable(rows:Record<string,any>[], editButtonConfi
                     <TableRow
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         {
+                            
                             Object.keys(row).map((key:string) =>{
                                 return (
-                                    <TableCell key={index}>
+                                    <TableCell>
                                         {
                                            editButtonConfigurationProps.editedRowIndex === index && key != "id"? (
                                             typeof row[key] === 'boolean'
                                            ) ? (
                                             <Select 
                                             defaultValue={row[key]}
+                                            onChange={(e) => setEditValuesField({...editValuesField,[key]:e.target.value})} 
                                             >
                                                 <MenuItem value={true as any}>Admin</MenuItem>
                                                 <MenuItem value={false as any}>Usuario</MenuItem>
                                             </Select>
                                            ) : (
-                                            <TextField defaultValue={row[key]} type={typeof row[key] === 'number' ? 'number' : 'text'}/>
+                                            <TextField onChange={(e) => setEditValuesField({...editValuesField,[key]:e.target.value})} defaultValue={row[key]} type={typeof row[key] === 'number' ? 'number' : 'text'}/>
                                            ) : (
                                                 <span>{typeof row[key] === 'boolean' ? (row[key] ? 'Admin' : 'Usuario') : row[key]}</span>
                                            )
@@ -123,7 +143,7 @@ function createBodyConfigurationTable(rows:Record<string,any>[], editButtonConfi
                                 )
                             })
                         }
-                        {createEditButtonConfiguration(index,editButtonConfigurationProps)}
+                        {createEditButtonConfiguration(configurationName,index,editButtonConfigurationProps,{...row,...editValuesField})}
                     </TableRow>
                 ))
             }
@@ -136,12 +156,14 @@ interface configurationTableProps {
     rows:Record<string,any>[];
 }
 
-function createConfigurationTable(configurationTableProps:configurationTableProps,editButtonConfigurationProps:editButtonConfigurationProps){
+function createConfigurationTable(configurationName:string,
+    configurationTableProps:configurationTableProps,editButtonConfigurationProps:editButtonConfigurationProps,
+){
     return (
         <TableContainer component={Paper} sx={{overflowY:"scroll",maxHeight:"45vh"}}>
             <Table>
                 {createHeaderConfigurationTable(configurationTableProps.header)}
-                {createBodyConfigurationTable(configurationTableProps.rows,editButtonConfigurationProps)}
+                {createBodyConfigurationTable(configurationName,configurationTableProps.rows,editButtonConfigurationProps)}
             </Table>
         </TableContainer>
     )
@@ -153,15 +175,16 @@ export default function Configuration(configurationName:string,
     inputTextControlProps:inputTextControlProps,
     configurationTableProps:configurationTableProps,
     editButtonConfigurationProps:editButtonConfigurationProps,
-    createEntityFields:Record<string,any>){
+    createEntityFields:Record<string,any>
+    ){
     // Menu
     const [open, setOpen] = useState(false);
     return (
         <div className="configuration-objects">
             {LeftNavigationMenu(open, setOpen)}
             <header>
-                <IconButton>
-                    <Menu onClick={() => setOpen(!open)} style = {{fontSize: "8vh"}}></Menu>
+                <IconButton onClick={() => setOpen(!open)}>
+                    <Menu  style = {{fontSize: "8vh"}}></Menu>
                 </IconButton>
             </header>
             <main>
@@ -169,11 +192,11 @@ export default function Configuration(configurationName:string,
                     <div className="configuration-elements">
                         <h1>Configuración de {configurationName}</h1>
                         <Button color="success" variant="contained" sx={{marginBottom:'1%', fontSize:'100%'}}
-                        onClick={() => CreateEntityConfiguration(configurationName,createEntityFields)}>Crear {configurationName}</Button>
+                        onClick={() => CreateEntityConfiguration(configurationName,createEntityFields,configurationName)}>Crear {configurationName}</Button>
                         <div className="configuration-searcher">
                             {createFormControl(formControlProps,inputTextControlProps)}
                         </div>
-                        {createConfigurationTable(configurationTableProps,editButtonConfigurationProps)}
+                        {createConfigurationTable(configurationName,configurationTableProps,editButtonConfigurationProps)}
                     </div>
                 </div>
             </main>
