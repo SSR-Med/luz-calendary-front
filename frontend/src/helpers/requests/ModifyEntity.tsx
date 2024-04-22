@@ -55,7 +55,6 @@ export async function getEntity(entityType:string){
         return await response.data
     }
     catch(error){
-        errorAlert("Error","Error al obtener datos")
         return([])
     }
 }

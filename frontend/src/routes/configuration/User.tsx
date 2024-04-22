@@ -8,11 +8,13 @@ import { useNavigate } from "react-router";
 // Helpers
 import HandleTable from "../../helpers/configuration/HandleTable";
 import RefreshToken from "../../helpers/token/RefreshToken";
-import { getEntity} from "../../helpers/requests/ModifyEntity";
+import {getEntity} from "../../helpers/requests/ModifyEntity";
+import { unauthorizeUser } from "../../helpers/admin/GetAdmin";
 
 export default function User() {
     const navigate = useNavigate()
     useEffect(()=>{
+      unauthorizeUser(navigate)
       RefreshToken(navigate)
     },[])
     // Select values
@@ -24,10 +26,12 @@ export default function User() {
     // Request data
     const [requestData,setRequestData] = useState<Record<string,any>[]>([])
     useEffect(()=>{
-      getEntity("user").then((responseData) => {
-        setRequestData(responseData)
+      setTimeout(() => {
+        getEntity("user").then((responseData) => {
+          setRequestData(responseData)
+        })
       })
-    }, [])
+    }, [requestData])
     
     let requestFilterData = HandleTable(requestData,
       valueForm,
