@@ -1,0 +1,43 @@
+.settings-objects{
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.settings-objects header{
+    background-color: #85be65;
+    height: 10%;
+    width: 100%;
+}
+.settings-objects main{
+    position: absolute;
+    top:10%;
+    height: 90%;
+    width: 100%;
+    background-color: #E5E5E5;
+}
+
+.settings-div{
+    position: relative;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+    width: 80%;
+    height:80%;
+    background-color: white;
+}
+.settings-nav{
+    background-color: #E5E5E5;
+}
+.settings-elements{
+    display: flex;
+    flex-direction: column;
+    margin: 2.5% 2.5%;
+}
+.settings-elements h1{
+    margin-bottom: 5%;
+}
+.settings-elements .MuiInputBase-root{
+    margin-bottom: 5%;
+}

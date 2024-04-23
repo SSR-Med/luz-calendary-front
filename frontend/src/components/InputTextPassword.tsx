@@ -5,10 +5,11 @@ import {TextField, InputAdornment, IconButton} from '@mui/material';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 // Styles
-import { loginStyleTextField } from "../styles/login/LoginStyle";
+import { styleTextField } from "../styles/TextStyle";
 
 export function InputTextPassword(label:string = "Contraseña",
-  password:string, setPassword:React.Dispatch<React.SetStateAction<string>>
+  password:string, setPassword:React.Dispatch<React.SetStateAction<string>>,
+  sx:Record<string,any>=styleTextField
 ){
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -26,6 +27,6 @@ export function InputTextPassword(label:string = "Contraseña",
                 </IconButton>
               </InputAdornment>
             )
-          }} variant="filled" sx= {loginStyleTextField}></TextField>
+          }} variant="filled" sx= {sx}></TextField>
     )
 }

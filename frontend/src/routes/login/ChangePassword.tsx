@@ -10,7 +10,7 @@ import { InputTextPassword } from "../../components/InputTextPassword";
 // Helpers
 import { successAlert, errorAlert } from "../../helpers/alerts/AlertResponse";
 // Styles
-import { loginStyleButton } from "../../styles/login/LoginStyle";
+import { styleButton } from "../../styles/TextStyle";
 // Enviroment
 import { API_URL } from "../../configuration/EnviromentVariables";
 
@@ -42,7 +42,7 @@ export default function ChangePassword(){
                         <h1>Nueva contraseña</h1>
                         {InputTextPassword("Crea nueva contraseña",password,setPassword)}
                         {InputTextPassword("Confirma contraseña",confirmPassword,setConfirmPassword)}
-                        <Button variant="contained" sx={loginStyleButton} onClick={handleChangePasswordClick}>Cambiar contraseña</Button>
+                        <Button variant="contained" sx={styleButton} onClick={handleChangePasswordClick}>Cambiar contraseña</Button>
                     </div>
                 </div>
             </div>

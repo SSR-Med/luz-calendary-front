@@ -4,13 +4,12 @@ import "/src/static/css/configuration/Configuration.css"
 import { useState } from "react";
 import { TextField,SelectChangeEvent, FormControl, InputLabel, Select, MenuItem,
     TableContainer, Paper, Table, TableHead ,TableBody, TableRow, TableCell,
-    IconButton, Button
+    Button
  } from "@mui/material";
-// Icons
-import { Menu } from "@mui/icons-material";
-// Components 
+// Components   
 import LeftNavigationMenu from "./LeftNavigationMenu";
 import CreateEntityConfiguration from "./CreateEntityConfiguration";
+import HeaderMenu from "./HeaderMenu";
 // Helpers
 import { deleteEntity, modifyEntity } from "../helpers/requests/ModifyEntity";
 
@@ -182,11 +181,7 @@ export default function Configuration(configurationName:string,
     return (
         <div className="configuration-objects">
             {LeftNavigationMenu(open, setOpen)}
-            <header>
-                <IconButton onClick={() => setOpen(!open)}>
-                    <Menu  style = {{fontSize: "8vh"}}></Menu>
-                </IconButton>
-            </header>
+            {HeaderMenu(open, setOpen)}
             <main>
                 <div className="configuration-div">
                     <div className="configuration-elements">

@@ -8,7 +8,7 @@ import axios from 'axios';
 // Components
 import EmailTextField from "../../components/EmailTextField";
 // Styles
-import { loginStyleButton} from "../../styles/login/LoginStyle";
+import { styleButton} from "../../styles/TextStyle";
 // Environment
 import { EMAIL_REGEX, API_URL } from "../../configuration/EnviromentVariables";
 // Helpers
@@ -36,7 +36,7 @@ export default function ForgotPassword(){
                         <h1>¿Olvidaste tu contraseña?</h1>
                         <p id="href-account">¿Recuerdas tu contraseña? <Link to="/">Inicia sesión</Link></p>
                         {EmailTextField(email,setEmail,isEmailValid)}
-                        <Button variant="contained" sx={loginStyleButton} disabled={!isEmailValid} onClick={handleForgotPasswordClick}>Cambiar contraseña</Button>
+                        <Button variant="contained" sx={styleButton} disabled={!isEmailValid} onClick={handleForgotPasswordClick}>Cambiar contraseña</Button>
                     </div>
                 </div>
             </div>

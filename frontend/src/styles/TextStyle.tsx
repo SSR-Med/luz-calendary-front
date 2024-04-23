@@ -1,4 +1,4 @@
-export const loginStyleButton = {
+export const styleButton = {
     backgroundColor: "#4caf50",
     "&:hover": {
       backgroundColor: "#388e3c"
@@ -6,7 +6,7 @@ export const loginStyleButton = {
 
 }
 
-export const loginStyleTextField =  {
+export const styleTextField =  {
     "& label": {
       "&.Mui-focused": {
         color: '#4caf50'
@@ -15,4 +15,9 @@ export const loginStyleTextField =  {
     ".MuiFilledInput-underline:after":{
         borderBottomColor: '#4caf50'
     }
-  }
+}
+
+export const passwordStyleTextField = {
+  ...styleTextField,
+  width: "60%",
+}

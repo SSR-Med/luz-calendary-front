@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import { useState } from "react";
 import axios from 'axios';
 // Styles
-import { loginStyleButton, loginStyleTextField } from "../../styles/login/LoginStyle";
+import { styleButton, styleTextField } from "../../styles/TextStyle";
 // Components
 import { InputTextPassword } from "../../components/InputTextPassword";
 import EmailTextField from "../../components/EmailTextField";
@@ -42,9 +42,9 @@ export default function Register(){
                 <div className="login-div">
                     <div className ="login-elements">
                         {EmailTextField(email,setEmail,isEmailValid)}
-                        <TextField value={name} onChange={(e) => setName(e.target.value)}  label="Nombre" variant="filled" sx= {loginStyleTextField}></TextField>
+                        <TextField value={name} onChange={(e) => setName(e.target.value)}  label="Nombre" variant="filled" sx= {styleTextField}></TextField>
                         {InputTextPassword("Contraseña",password,setPassword)}
-                        <Button variant="contained" sx={loginStyleButton} onClick={handleRegisterClick} disabled={!isEmailValid}>Registrar</Button>
+                        <Button variant="contained" sx={styleButton} onClick={handleRegisterClick} disabled={!isEmailValid}>Registrar</Button>
                         <p id="href-account">¿Ya tienes una cuenta? <Link to="/">Inicia sesión</Link></p>
                     </div>
                 </div>

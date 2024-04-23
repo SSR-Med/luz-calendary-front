@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 // Environment
 import { API_URL } from "../../configuration/EnviromentVariables";
 // Styles
-import { loginStyleButton, loginStyleTextField } from "../../styles/login/LoginStyle";
+import { styleButton, styleTextField } from "../../styles/TextStyle";
 // Components
 import { InputTextPassword } from "../../components/InputTextPassword";
 // Helpers
@@ -39,9 +39,9 @@ export default function Login(){
             <div className = "login">
                 <div className="login-div">
                     <div className ="login-elements">
-                        <TextField label="Nombre" variant="filled" sx= {loginStyleTextField} onChange={(e) => setName(e.target.value)}></TextField>
+                        <TextField label="Nombre" variant="filled" sx= {styleTextField} onChange={(e) => setName(e.target.value)}></TextField>
                         {InputTextPassword("Contraseña",password,setPassword)}
-                        <Button variant="contained" sx={loginStyleButton} onClick={handleLoginClick}>Iniciar sesión</Button>
+                        <Button variant="contained" sx={styleButton} onClick={handleLoginClick}>Iniciar sesión</Button>
                         <p id="href-account">¿No tienes una cuenta? <Link to="/register">Registrate</Link></p>
                         <p id="href-account">¿Olvidaste tu contraseña?<Link to="/forgot-password">Reinicia contraseña</Link></p>
                     </div>
