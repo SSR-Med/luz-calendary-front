@@ -3,7 +3,7 @@ import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Drawer
 import {Link} from "react-router-dom";
 import { useEffect, useState } from "react";
 // Icons
-import { LocalHospital, CalendarMonth, AccountBox, Construction } from "@mui/icons-material";
+import { LocalHospital, CalendarMonth, AccountBox, Construction, ExitToApp } from "@mui/icons-material";
 // Helpers
 import { GetADmin } from "../helpers/admin/GetAdmin";
 
@@ -37,6 +37,7 @@ export default function LeftNavigationMenu(open:boolean, setOpen:React.Dispatch<
             {itemDrawer("Pacientes", <LocalHospital/>,"/patient")}
             {userinMenu === true ? itemDrawer("Usuarios", <AccountBox/>,"/user" ) : (null)}
             {itemDrawer("Configuración", <Construction/>,"/configuration")}
+            {itemDrawer("Salir", <ExitToApp/>,"/")}
         </List>   
     </Box>
     )
