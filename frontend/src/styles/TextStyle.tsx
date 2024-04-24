@@ -21,3 +21,8 @@ export const passwordStyleTextField = {
   ...styleTextField,
   width: "60%",
 }
+
+export const calendarButton = {
+  height: "8%",
+  fontSize: "100%"
+}

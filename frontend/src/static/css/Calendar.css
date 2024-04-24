@@ -1,0 +1,30 @@
+.calendar-objects{
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.calendar-objects header{
+    background-color: #85be65;
+    height: 10%;
+    width: 100%;
+}
+.calendar-objects main{
+    height: 90%;
+    width: 100%;
+}
+.calendar-menu {
+    width: 17%;
+    height: 100%;
+    background-color: #85be65;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+.calendar-content{
+    width: 83%;
+    height: 100%;
+    float: right;
+}
